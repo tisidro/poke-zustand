@@ -46,16 +46,24 @@ function App () {
 
   const PokemonTable = () => {
     const pokemon = useStore(state => state.pokemon)
-
+    //add filtering for table of pokemon
+    const filter = useStore(state => state.filter)
     return (
       <table width='95%'>
         <tbody>
-          {pokemon.map(({ id, name: { english }, type }) => (
-            <tr key={id}>
-              <td> {english}</td>
-              <td> {type.join(',')}</td>
-            </tr>
-          ))}
+          {pokemon
+            //for name (in English), turn it to lowercase if it's the one filtered
+            .filter(({ name: { english } }) =>
+              english.toLowerCase().includes(filter.toLowerCase())
+            )
+            .map(({ id, name: { english }, type }) => (
+              //pull out pokemon type in english from id (using destructuring)
+              //join types listed and separate them with a comma
+              <tr key={id}>
+                <td> {english}</td>
+                <td> {type.join(',')}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     )
@@ -64,8 +72,10 @@ function App () {
   return (
     <div className='App'>
       <div>
+        <h2>Type the Pokemon You Want to Catch!</h2>
         {/* call component for when someone filters the pokemon data */}
         <FilterInput />
+        <h1>All Pokemon...</h1>
         <PokemonTable />
       </div>
       {/* add value of filter so we can see if it's returning--it works! */}
