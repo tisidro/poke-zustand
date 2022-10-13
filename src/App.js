@@ -4,7 +4,7 @@ import './App.css'
 
 // link to gist with all pokemon
 const POKE_URL =
-  'https://gist.githubusercontent.com/jherr/23ae3f96cf5ac341c98cd9aa164d2fe3/raw/0658aeff401d196dece7ec6fe6c726c6adc1cc00/gistfile1.txt'
+  'https://gist.githubusercontent.com/tisidro/f8703680abdd8006385395e958e75191/raw/417f1a5d8ca8109938548bf69812934cc2a9df89/gistfile1.txt'
 
 // create useStore hook
 const useStore = create(set => ({
